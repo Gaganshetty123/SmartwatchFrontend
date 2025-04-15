@@ -1,6 +1,6 @@
 # Node modules
 node_modules/
-
+src/environments/
 # Build output
 dist/
 out-tsc/
