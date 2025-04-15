@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+    <header class="header">
+      <div class="logo">
+        <h1>API Frontend</h1>
+      </div>
+      <div class="user-info">
+        <span *ngIf="currentUser">Welcome, {{ currentUser.username }}</span>
+        <button class="btn btn-outline" (click)="logout()">Logout</button>
+      </div>
+    </header>
+  
+    <main class="content">
+      <div class="welcome-card">
+        <h2>Welcome to the Dashboard</h2>
+        <p>You have successfully logged in to the application.</p>
+        <p>Use the navigation to explore different features of the application.</p>
+      </div>
+  
+      <!-- Additional dashboard content will be added here -->
+      <div class="dashboard-cards">
+        <div class="card">
+          <h3>Feature 1</h3>
+          <p>Description of feature 1</p>
+        </div>
+        <div class="card">
+          <h3>Feature 2</h3>
+          <p>Description of feature 2</p>
+        </div>
+        <div class="card">
+          <h3>Feature 3</h3>
+          <p>Description of feature 3</p>
+        </div>
+      </div>
+    </main>
+  </div>

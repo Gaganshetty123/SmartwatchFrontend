@@ -1,0 +1,93 @@
+<div class="bookings-container">
+  <h2 class="section-title"> Bookings</h2>
+
+  <div class="table-wrapper">
+    <table class="booking-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User ID</th>
+          <th>Booking Date</th>
+          <th>Estimated Date</th>
+          <th>Price</th>
+          <th>Device Model</th>
+          <th>Repair Issue</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let booking of bookings">
+          <td>{{ booking.id }}</td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else userIdDisplay">
+              <input [(ngModel)]="booking.userId" />
+            </ng-container>
+            <ng-template #userIdDisplay>{{ booking.userId }}</ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else bookingDateDisplay">
+              <input type="date" [(ngModel)]="booking.bookingDate" />
+            </ng-container>
+            <ng-template #bookingDateDisplay>{{ booking.bookingDate }}</ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else estimatedDisplay">
+              <input type="date" [(ngModel)]="booking.estimatedDelivery" />
+            </ng-container>
+            <ng-template #estimatedDisplay>{{ booking.estimatedDelivery }}</ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else priceDisplay">
+              <input type="number" [(ngModel)]="booking.totalPrice" />
+            </ng-container>
+            <ng-template #priceDisplay>{{ booking.totalPrice }}</ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else modelDisplay">
+              <input [(ngModel)]="booking.deviceModelId" />
+            </ng-container>
+            <ng-template #modelDisplay>{{ booking.deviceModelId }}</ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else issueDisplay">
+              <input [(ngModel)]="booking.repairIssueId" />
+            </ng-container>
+            <ng-template #issueDisplay>{{ booking.repairIssueId }}</ng-template>
+          </td>
+
+          <td>
+            <ng-container *ngIf="editingId === booking.id; else statusDisplay">
+              <select [(ngModel)]="booking.status">
+                <option value="Pending">Pending</option>
+                <option value="Accepted">Accepted</option>
+                <option value="Rejected">Rejected</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </ng-container>
+            <ng-template #statusDisplay>
+              <span class="status-tag" [ngClass]="booking.status.toLowerCase()">{{ booking.status }}</span>
+            </ng-template>
+          </td>
+
+          <td class="action-buttons">
+            <ng-container *ngIf="editingId === booking.id; else editBtn">
+              <button class="action-btn save" (click)="onSave(booking)">💾 Save</button>
+            </ng-container>
+            <ng-template #editBtn>
+              <button class="action-btn edit" (click)="onEdit(booking.id)">✏️ Edit</button>
+            </ng-template>
+
+            <button class="action-btn delete" (click)="onDelete(booking.id)">🗑 Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

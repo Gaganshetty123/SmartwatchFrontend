@@ -1,0 +1,150 @@
+<div class="payments-wrapper">
+  <div class="payments-background">
+    <div class="animated-gears"></div>
+  </div>
+ 
+  <div class="payments-container">
+    <div class="payments-header">
+      <div class="header-left">
+        <h1 class="page-title">Payments Management</h1>
+        <p class="page-subtitle">Track and manage payment transactions</p>
+      </div>
+      <div class="header-right">
+        <span class="timestamp"><i class="fa fa-clock"></i> 2025-04-15 10:03:21</span>
+        <span class="username"><i class="fa fa-user-circle"></i> SamaSir2003</span>
+      </div>
+    </div>
+ 
+    <h2 class="section-title">Payment Records</h2>
+ 
+    <div class="data-header">
+      <!-- <div class="data-filters">
+        <div class="filter-item">
+          <i class="fa fa-filter"></i>
+          <select>
+            <option>All Statuses</option>
+            <option>Success</option>
+            <option>Pending</option>
+            <option>Failed</option>
+          </select>
+        </div>
+        <div class="filter-item">
+          <i class="fa fa-calendar"></i>
+          <input type="date" placeholder="From date">
+        </div>
+      </div>
+      <div class="data-actions">
+        <button class="btn btn-outline">
+          <i class="fa fa-file-export"></i> Export
+        </button>
+        <button class="btn btn-primary">
+          <i class="fa fa-plus"></i> New Payment
+        </button>
+      </div> -->
+    </div>
+ 
+    <div class="table-wrapper" *ngIf="payments && payments.length > 0">
+      <table class="payments-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Booking ID</th>
+            <th>Transaction ID</th>
+            <th>Amount Paid</th>
+            <th>Payment Date</th>
+            <th>Method</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of payments">
+            <td>{{ payment.id }}</td>
+ 
+            <td>
+              <ng-container *ngIf="editingId === payment.id; else bookingIdDisplay">
+                <input [(ngModel)]="payment.bookingId" />
+              </ng-container>
+              <ng-template #bookingIdDisplay>{{ payment.bookingId }}</ng-template>
+            </td>
+ 
+            <td>
+              <ng-container *ngIf="editingId === payment.id; else txnIdDisplay">
+                <input [(ngModel)]="payment.transactionId" />
+              </ng-container>
+              <ng-template #txnIdDisplay>{{ payment.transactionId }}</ng-template>
+            </td>
+ 
+            <td>
+              <ng-container *ngIf="editingId === payment.id; else amountDisplay">
+                <input type="number" [(ngModel)]="payment.amountPaid" />
+              </ng-container>
+              <ng-template #amountDisplay>{{ payment.amountPaid | currency }}</ng-template>
+            </td>
+ 
+            <td>
+              <ng-container *ngIf="editingId === payment.id; else dateDisplay">
+                <input type="date" [(ngModel)]="payment.paymentDate" />
+              </ng-container>
+              <ng-template #dateDisplay>{{ payment.paymentDate | date }}</ng-template>
+            </td>
+ 
+            <td>
+              <ng-container *ngIf="editingId === payment.id; else methodDisplay">
+                <input [(ngModel)]="payment.paymentMethod" />
+              </ng-container>
+              <ng-template #methodDisplay>{{ payment.paymentMethod }}</ng-template>
+            </td>
+ 
+            <td>
+              <ng-container *ngIf="editingId === payment.id; else statusDisplay">
+                <select [(ngModel)]="payment.status">
+                  <option value="Pending">Pending</option>
+                  <option value="Success">Success</option>
+                  <option value="Failed">Failed</option>
+                </select>
+              </ng-container>
+              <ng-template #statusDisplay>
+                <span class="status-tag" [ngClass]="payment.status.toLowerCase()">{{ payment.status }}</span>
+              </ng-template>
+            </td>
+ 
+            <td>
+              <div class="action-buttons">
+                <ng-container *ngIf="editingId === payment.id; else editBtn">
+                  <button class="action-btn update" (click)="onSave(payment)">Save</button>
+                </ng-container>
+                <ng-template #editBtn>
+                  <button class="action-btn update" (click)="onEdit(payment.id)">Update</button>
+                </ng-template>
+ 
+                <button class="action-btn delete" (click)="onDelete(payment.id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <div *ngIf="payments.length === 0" class="no-payments">
+      <p>No payments found.</p>
+    </div>
+ 
+    <!-- <div class="pagination-container">
+      <div class="page-info">
+        Showing 1-10 of 24 payments
+      </div>
+      <div class="pagination-controls">
+        <button class="pagination-btn disabled">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        <button class="pagination-btn active">1</button>
+        <button class="pagination-btn">2</button>
+        <button class="pagination-btn">3</button>
+        <button class="pagination-btn">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
+    </div> -->
+  </div>
+</div>

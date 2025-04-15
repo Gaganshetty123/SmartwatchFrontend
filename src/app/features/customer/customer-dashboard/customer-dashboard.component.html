@@ -1,0 +1,42 @@
+<div class="customer-dashboard">
+  <!-- Brands List -->
+  <div class="brands-list">
+    <h2>Available Brands</h2>
+    <ul>
+      <li *ngFor="let brand of brands" (click)="onBrandClick(brand.id)">
+        {{ brand.name }}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Devices under the selected brand -->
+  <div *ngIf="selectedBrandId" class="devices-list">
+    <h3>Devices under {{ getSelectedBrandName() }}</h3>
+    <ul>
+      <!-- <li *ngFor="let device of selectedDevices" (click)="onDeviceClick(device.id)">
+        {{ device.modelName }}
+      </li> -->
+    </ul>
+  </div>
+
+  <!-- Service Selection for the selected device -->
+  <div *ngIf="selectedDeviceId" class="service-selection">
+    <h3>Select a Service for Device: {{ getSelectedDeviceName() }}</h3>
+
+    Dropdown for Services -->
+     <!-- <select (change)="onServiceSelect($event)">
+      <option *ngFor="let service of repairServices" [ngValue]="service">
+        {{ service.name }} - {{ service.price | currency }}
+      </option>
+    </select> -->
+
+    <!-- Display Selected Service Details -->
+    <div *ngIf="selectedService">
+      <h4>Selected Service: {{ selectedService.name }}</h4>
+      <p>Price: {{ selectedService.price | currency }}</p>
+    </div>
+
+    <!-- Submit Button for Repair Issue -->
+    <button (click)="submitRepairIssue()">Submit Repair Issue</button>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+$primary-color: #2c7be5;
+$secondary-color: #fafafa;
+$text-color: #444;
+$header-bg: #2c7be5;
+$header-text: #fff;
+$border-color: #e0e0e0;
+
+$btn-edit: #007bff;
+$btn-save: #28a745;
+$btn-delete: #dc3545;
+
+.bookings-container {
+  margin: 2rem;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  overflow-x: auto;
+
+  .section-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .booking-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    min-width: 960px;
+
+    th,
+    td {
+      padding: 14px 18px;
+      text-align: left;
+      border-bottom: 1px solid $border-color;
+    }
+
+    th {
+      background-color: $header-bg;
+      color: $header-text;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+    }
+
+    td {
+      background-color: $secondary-color;
+      color: $text-color;
+    }
+
+    tr:hover {
+      background-color: #f1f9ff;
+    }
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+  }
+
+  .status-tag {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: capitalize;
+
+    &.pending {
+      background-color: #ffc107;
+      color: #fff;
+    }
+
+    &.accepted {
+      background-color: #17a2b8;
+      color: #fff;
+    }
+
+    &.rejected {
+      background-color: #dc3545;
+      color: #fff;
+    }
+
+    &.completed {
+      background-color: #28a745;
+      color: #fff;
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .action-btn {
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &.edit {
+      background-color: $btn-edit;
+      color: white;
+
+      &:hover {
+        background-color: darken($btn-edit, 10%);
+      }
+    }
+
+    &.save {
+      background-color: $btn-save;
+      color: white;
+
+      &:hover {
+        background-color: darken($btn-save, 10%);
+      }
+    }
+
+    &.delete {
+      background-color: $btn-delete;
+      color: white;
+
+      &:hover {
+        background-color: darken($btn-delete, 10%);
+      }
+    }
+  }
+}

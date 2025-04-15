@@ -1,0 +1,90 @@
+<div class="brands-wrapper">
+  <div class="brands-background">
+    <div class="animated-gears"></div>
+  </div>
+ 
+  <div class="brands-container">
+    <div class="brands-header">
+      <div class="header-left">
+        <h1 class="page-title">Brands Management</h1>
+        <p class="page-subtitle">View and manage smartwatch brands</p>
+      </div>
+      <div class="header-right">
+        <span class="timestamp"><i class="fa fa-clock"></i> 2025-04-15 09:55:45</span>
+        <span class="username"><i class="fa fa-user-circle"></i> SamaSir2003</span>
+      </div>
+    </div>
+ 
+    <div class="data-container">
+      <div class="data-header">
+        <h2 class="section-title">All Brands</h2>
+        <div class="add-brand-form">
+          <div class="input-with-icon">
+            <i class="fa fa-tag"></i>
+            <input type="text" placeholder="Enter new brand name" [(ngModel)]="newBrandName" />
+          </div>
+          <button class="btn btn-primary" (click)="onAdd()">
+            <i class="fa fa-plus"></i> Add Brand
+          </button>
+        </div>
+      </div>
+ 
+      <div *ngIf="brands && brands.length > 0" class="table-wrapper">
+        <table class="brands-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Brand Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let brand of brands" class="brand-row">
+              <td class="brand-id">{{ brand.id }}</td>
+              <td class="brand-name">
+                <ng-container *ngIf="editingId === brand.id; else nameDisplay">
+                  <div class="input-with-icon small">
+                    <i class="fa fa-pencil-alt"></i>
+                    <input [(ngModel)]="editingName" autofocus />
+                  </div>
+                </ng-container>
+                <ng-template #nameDisplay>
+                  <div class="brand-name-display">
+                    <i class="fa fa-tag"></i>
+                    <span>{{ brand.name }}</span>
+                  </div>
+                </ng-template>
+              </td>
+              <td class="action-buttons">
+                <ng-container *ngIf="editingId === brand.id; else updateBtn">
+                  <button class="action-btn save" (click)="onSave()">
+                    <i class="fa fa-check"></i> Save
+                  </button>
+                  <button class="action-btn cancel" (click)="editingId = null">
+                    <i class="fa fa-times"></i> Cancel
+                  </button>
+                </ng-container>
+                <ng-template #updateBtn>
+                  <button class="action-btn edit" (click)="onEdit(brand)">
+                    <i class="fa fa-pen"></i> Edit
+                  </button>
+                  <button class="action-btn delete" (click)="onDelete(brand.id)">
+                    <i class="fa fa-trash"></i> Delete
+                  </button>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+      <div *ngIf="brands.length === 0" class="no-data-container">
+        <div class="no-data-icon">
+          <i class="fa fa-tags"></i>
+        </div>
+        <h3>No Brands Found</h3>
+        <p>Add a new brand to get started</p>
+      </div>
+    </div>
+  </div>
+</div>

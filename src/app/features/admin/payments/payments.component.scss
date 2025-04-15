@@ -1,0 +1,516 @@
+$primary-color: #2196f3;
+$secondary-color: #0d47a1;
+$accent-color: #42a5f5;
+$text-color: #333;
+$light-text: #777;
+$background: #f9f9ff;
+$error-color: #f44336;
+$success-color: #4caf50;
+$warning-color: #ffc107;
+$info-color: #03a9f4;
+$border-radius: 8px;
+$box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+$transition: all 0.3s ease;
+ 
+// Status colors
+$status-pending: $warning-color;
+$status-success: $success-color;
+$status-failed: $error-color;
+ 
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+ 
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+ 
+// Animations
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+ 
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+ 
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+ 
+// Main Styles
+.payments-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+ 
+.payments-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.1;
+ 
+  .animated-gears {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%232196f3" d="M50 25c-13.8 0-25 11.2-25 25s11.2 25 25 25 25-11.2 25-25-11.2-25-25-25zm0 44c-10.5 0-19-8.5-19-19s8.5-19 19-19 19 8.5 19 19-8.5 19-19 19z"/><path fill="%232196f3" d="M88 49h-8.4c-.4-1.7-1-3.4-1.7-5l5.9-5.9c1.6-1.6 1.6-4.1 0-5.7L76.5 25c-1.6-1.6-4.1-1.6-5.7 0l-5.9 5.9c-1.6-.7-3.3-1.3-5-1.7V21c0-2.2-1.8-4-4-4h-12c-2.2 0-4 1.8-4 4v8.2c-1.7.4-3.4 1-5 1.7l-5.9-5.9c-1.6-1.6-4.1-1.6-5.7 0l-7.4 7.4c-1.6 1.6-1.6 4.1 0 5.7l5.9 5.9c-.7 1.6-1.3 3.3-1.7 5H12c-2.2 0-4 1.8-4 4v12c0 2.2 1.8 4 4 4h8.2c.4 1.7 1 3.4 1.7 5l-5.9 5.9c-1.6 1.6-1.6 4.1 0 5.7l7.4 7.4c1.6 1.6 4.1 1.6 5.7 0l5.9-5.9c1.6.7 3.3 1.3 5 1.7V88c0 2.2 1.8 4 4 4h12c2.2 0 4-1.8 4-4v-8.2c1.7-.4 3.4-1 5-1.7l5.9 5.9c1.6 1.6 4.1 1.6 5.7 0l7.4-7.4c1.6-1.6 1.6-4.1 0-5.7l-5.9-5.9c.7-1.6 1.3-3.3 1.7-5H88c2.2 0 4-1.8 4-4V53c0-2.2-1.8-4-4-4zM50 65c-8.3 0-15-6.7-15-15s6.7-15 15-15 15 6.7 15 15-6.7 15-15 15z"/></svg>');
+    background-repeat: no-repeat;
+    top: 20%;
+    left: 20%;
+    animation: spin 30s linear infinite;
+  }
+ 
+  &:after {
+    content: '';
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%230d47a1" d="M50 25c-13.8 0-25 11.2-25 25s11.2 25 25 25 25-11.2 25-25-11.2-25-25-25zm0 44c-10.5 0-19-8.5-19-19s8.5-19 19-19 19 8.5 19 19-8.5 19-19 19z"/><path fill="%230d47a1" d="M88 49h-8.4c-.4-1.7-1-3.4-1.7-5l5.9-5.9c1.6-1.6 1.6-4.1 0-5.7L76.5 25c-1.6-1.6-4.1-1.6-5.7 0l-5.9 5.9c-1.6-.7-3.3-1.3-5-1.7V21c0-2.2-1.8-4-4-4h-12c-2.2 0-4 1.8-4 4v8.2c-1.7.4-3.4 1-5 1.7l-5.9-5.9c-1.6-1.6-4.1-1.6-5.7 0l-7.4 7.4c-1.6 1.6-1.6 4.1 0 5.7l5.9 5.9c-.7 1.6-1.3 3.3-1.7 5H12c-2.2 0-4 1.8-4 4v12c0 2.2 1.8 4 4 4h8.2c.4 1.7 1 3.4 1.7 5l-5.9 5.9c-1.6 1.6-1.6 4.1 0 5.7l7.4 7.4c1.6 1.6 4.1 1.6 5.7 0l5.9-5.9c1.6.7 3.3 1.3 5 1.7V88c0 2.2 1.8 4 4 4h12c2.2 0 4-1.8 4-4v-8.2c1.7-.4 3.4-1 5-1.7l5.9 5.9c1.6 1.6 4.1 1.6 5.7 0l7.4-7.4c1.6-1.6 1.6-4.1 0-5.7l-5.9-5.9c.7-1.6 1.3-3.3 1.7-5H88c2.2 0 4-1.8 4-4V53c0-2.2-1.8-4-4-4zM50 65c-8.3 0-15-6.7-15-15s6.7-15 15-15 15 6.7 15 15-6.7 15-15 15z"/></svg>');
+    background-repeat: no-repeat;
+    top: 60%;
+    right: 15%;
+    animation: spin 20s linear infinite reverse;
+  }
+}
+ 
+.payments-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: $box-shadow;
+  padding: 30px;
+}
+ 
+.payments-header {
+  @include flex-between;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+ 
+  .header-left {
+    .page-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: $text-color;
+      margin-bottom: 5px;
+    }
+   
+    .page-subtitle {
+      color: $light-text;
+      font-size: 14px;
+    }
+  }
+ 
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+   
+    .timestamp, .username {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: $light-text;
+     
+      i {
+        color: $primary-color;
+      }
+    }
+   
+    .timestamp {
+      border-right: 1px solid #eee;
+      padding-right: 20px;
+    }
+  }
+}
+ 
+.section-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: 25px;
+  text-align: center;
+  position: relative;
+ 
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(to right, $primary-color, $accent-color);
+    border-radius: 2px;
+  }
+}
+ 
+.data-header {
+  @include flex-between;
+  margin-bottom: 20px;
+ 
+  .data-filters {
+    display: flex;
+    gap: 15px;
+   
+    .filter-item {
+      position: relative;
+     
+      select, input {
+        padding: 8px 30px 8px 35px;
+        border: 1px solid #ddd;
+        border-radius: $border-radius;
+        font-size: 14px;
+        transition: $transition;
+        background-color: white;
+       
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+        }
+      }
+     
+      i {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $primary-color;
+        font-size: 14px;
+      }
+    }
+  }
+ 
+  .data-actions {
+    display: flex;
+    gap: 10px;
+   
+    .btn {
+      padding: 8px 15px;
+      border-radius: $border-radius;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      transition: $transition;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+     
+      &.btn-primary {
+        background-color: $primary-color;
+        color: white;
+       
+        &:hover {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+     
+      &.btn-outline {
+        background-color: white;
+        border: 1px solid $primary-color;
+        color: $primary-color;
+       
+        &:hover {
+          background-color: rgba($primary-color, 0.1);
+        }
+      }
+    }
+  }
+}
+ 
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+ 
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+ 
+  th, td {
+    padding: 15px;
+    text-align: left;
+  }
+ 
+  th {
+    background-color: rgba($primary-color, 0.1);
+    color: $secondary-color;
+    font-weight: 600;
+    font-size: 14px;
+    border-bottom: 2px solid rgba($primary-color, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+ 
+  td {
+    font-size: 14px;
+    border-bottom: 1px solid #eee;
+    transition: $transition;
+    vertical-align: middle;
+  }
+ 
+  tbody tr {
+    &:hover td {
+      background-color: rgba($primary-color, 0.03);
+    }
+   
+    &:last-child td {
+      border-bottom: none;
+    }
+  }
+ 
+  .status-tag {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+   
+    &.success {
+      background-color: rgba($status-success, 0.15);
+      color: darken($status-success, 20%);
+      border: 1px solid $status-success;
+    }
+   
+    &.pending {
+      background-color: rgba($status-pending, 0.15);
+      color: darken($status-pending, 20%);
+      border: 1px solid $status-pending;
+    }
+   
+    &.failed {
+      background-color: rgba($status-failed, 0.15);
+      color: darken($status-failed, 20%);
+      border: 1px solid $status-failed;
+    }
+  }
+ 
+  // Input fields for editing mode
+  input, select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: $border-radius;
+    font-size: 13px;
+    background-color: white;
+   
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 2px rgba($primary-color, 0.1);
+    }
+   
+    &[type="date"] {
+      padding: 7px 12px;
+    }
+  }
+}
+ 
+.action-buttons {
+  display: flex;
+  gap: 10px;
+ 
+  .action-btn {
+    padding: 6px 12px;
+    border-radius: $border-radius;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: $transition;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+   
+    &.update {
+      background-color: rgba($primary-color, 0.1);
+      color: $primary-color;
+     
+      &:hover {
+        background-color: $primary-color;
+        color: white;
+      }
+    }
+   
+    &.delete {
+      background-color: rgba($error-color, 0.1);
+      color: $error-color;
+     
+      &:hover {
+        background-color: $error-color;
+        color: white;
+      }
+    }
+  }
+}
+ 
+.no-payments {
+  padding: 40px 20px;
+  text-align: center;
+  background-color: rgba($background, 0.5);
+  border-radius: $border-radius;
+  margin: 20px 0;
+ 
+  p {
+    font-size: 16px;
+    color: $light-text;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+   
+    &:before {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 60px;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%232196f3" d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>');
+      background-repeat: no-repeat;
+      background-size: contain;
+      opacity: 0.7;
+    }
+  }
+}
+ 
+// Pagination
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+ 
+  .page-info {
+    font-size: 14px;
+    color: $light-text;
+  }
+ 
+  .pagination-controls {
+    display: flex;
+    gap: 10px;
+   
+    .pagination-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 4px;
+      @include flex-center;
+      border: 1px solid #ddd;
+      background-color: white;
+      cursor: pointer;
+      transition: $transition;
+     
+      &:hover {
+        border-color: $primary-color;
+        background-color: rgba($primary-color, 0.05);
+      }
+     
+      &.active {
+        background-color: $primary-color;
+        color: white;
+        border-color: $primary-color;
+      }
+     
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+ 
+// Responsive styles
+@media (max-width: 992px) {
+  .payments-header {
+    flex-direction: column;
+    gap: 15px;
+   
+    .header-right {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+     
+      .timestamp {
+        border-right: none;
+        padding-right: 0;
+      }
+    }
+  }
+ 
+  .data-header {
+    flex-direction: column;
+    gap: 15px;
+   
+    .data-filters {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  }
+}
+ 
+@media (max-width: 768px) {
+  .payments-container {
+    padding: 20px 15px;
+  }
+ 
+  .section-title {
+    font-size: 20px;
+  }
+ 
+  .pagination-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+ 
+  .action-buttons {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
